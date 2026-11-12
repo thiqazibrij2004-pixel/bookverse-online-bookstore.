@@ -1,0 +1,462 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "base": "http://localhost:8082/onlinebookstore",
+  "capturedAt": "2026-11-12T10:05:09.686Z",
+  "pages": [
+    {
+      "module": "01-home",
+      "title": "Homepage",
+      "source": "index.jsp",
+      "route": "/",
+      "file": "01-home/homepage.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "BookVerse - Your Online Bookstore"
+    },
+    {
+      "module": "02-books",
+      "title": "Book Catalog",
+      "source": "book/book-catalog.jsp",
+      "route": "/books",
+      "file": "02-books/book-catalog.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Book Catalog - BookVerse"
+    },
+    {
+      "module": "02-books",
+      "title": "Search Results",
+      "source": "book/book-catalog.jsp",
+      "route": "/books?search=Educated",
+      "file": "02-books/search-results.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Book Catalog - BookVerse"
+    },
+    {
+      "module": "02-books",
+      "title": "Book Details",
+      "source": "book/book-details.jsp",
+      "route": "/book-details?id=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "02-books/book-details.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "The Night Circus - BookVerse"
+    },
+    {
+      "module": "02-books",
+      "title": "Genre Books",
+      "source": "book/genre-books.jsp",
+      "route": "/genre?genre=Fantasy",
+      "file": "02-books/genre-books.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Fantasy Books - BookVerse"
+    },
+    {
+      "module": "02-books",
+      "title": "Top Books",
+      "source": "book/top-books.jsp",
+      "route": "/top-books",
+      "file": "02-books/top-books.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Top Rated Books - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Customer Login",
+      "source": "user/login.jsp",
+      "route": "/login",
+      "file": "03-account/customer-login.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Login - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Registration",
+      "source": "user/register.jsp",
+      "route": "/register",
+      "file": "03-account/registration.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Register - BookVerse"
+    },
+    {
+      "module": "08-admin",
+      "title": "Admin Login",
+      "source": "admin/login.jsp",
+      "route": "/admin/login",
+      "file": "08-admin/admin-login.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Admin Login - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Customer Profile",
+      "source": "user/profile.jsp",
+      "route": "/user/profile.jsp",
+      "file": "03-account/customer-profile.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "My Profile - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Update Profile",
+      "source": "user/update-profile.jsp",
+      "route": "/update-profile",
+      "file": "03-account/update-profile.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Edit Profile - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Upgrade Premium",
+      "source": "user/upgrade-premium.jsp",
+      "route": "/upgrade-to-premium",
+      "file": "03-account/upgrade-premium.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Upgrade to Premium - BookVerse"
+    },
+    {
+      "module": "04-cart",
+      "title": "Shopping Cart",
+      "source": "cart.jsp",
+      "route": "/cart",
+      "file": "04-cart/shopping-cart.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Shopping Cart - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "My Wishlists",
+      "source": "wishlist/wishlists.jsp",
+      "route": "/wishlists",
+      "file": "05-wishlist/my-wishlists.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "My Wishlists - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Create Wishlist",
+      "source": "wishlist/create-wishlist.jsp",
+      "route": "/wishlists?action=create",
+      "file": "05-wishlist/create-wishlist.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Create New Wishlist - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Wishlist Details",
+      "source": "wishlist/wishlist-details.jsp",
+      "route": "/wishlists?action=view&id=f496edb0-69cb-4b13-9b19-282b256705d6",
+      "file": "05-wishlist/wishlist-details.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Wishlist Details - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Edit Wishlist",
+      "source": "wishlist/edit-wishlist.jsp",
+      "route": "/wishlists?action=edit&id=f496edb0-69cb-4b13-9b19-282b256705d6",
+      "file": "05-wishlist/edit-wishlist.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Edit Wishlist - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Select Wishlist",
+      "source": "wishlist/select-wishlist.jsp",
+      "route": "/wishlist-item?action=select-wishlist&bookId=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "05-wishlist/select-wishlist.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Add to Wishlist - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Edit Wishlist Item",
+      "source": "wishlist/edit-item.jsp",
+      "route": "/wishlist-item?action=edit&wishlistId=f496edb0-69cb-4b13-9b19-282b256705d6&bookId=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "05-wishlist/edit-wishlist-item.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Edit Wishlist Item - BookVerse"
+    },
+    {
+      "module": "06-orders",
+      "title": "Checkout",
+      "source": "order/checkout.jsp",
+      "route": "/checkout",
+      "file": "06-orders/checkout.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Checkout - BookVerse"
+    },
+    {
+      "module": "06-orders",
+      "title": "Order Confirmation",
+      "source": "order/order-confirmation.jsp",
+      "route": "/order-confirmation?orderId=b32aa2f9-98e7-4aed-b2e3-f10c2a0999e8",
+      "file": "06-orders/order-confirmation.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Confirmation - BookVerse"
+    },
+    {
+      "module": "06-orders",
+      "title": "Order History",
+      "source": "order/order-history.jsp",
+      "route": "/order-history",
+      "file": "06-orders/order-history.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order History - BookVerse"
+    },
+    {
+      "module": "06-orders",
+      "title": "Order Details",
+      "source": "order/order-details.jsp",
+      "route": "/order-details?orderId=b32aa2f9-98e7-4aed-b2e3-f10c2a0999e8",
+      "file": "06-orders/order-details.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Details - BookVerse"
+    },
+    {
+      "module": "07-reviews",
+      "title": "Add Review",
+      "source": "review/add-review.jsp",
+      "route": "/add-book-review?bookId=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "07-reviews/add-review.png",
+      "status": "Captured",
+      "note": "Guest add-review form. Existing-review customer routes correctly redirect instead.",
+      "pageTitle": "Write a Review for The Night Circus - BookVerse"
+    },
+    {
+      "module": "07-reviews",
+      "title": "Book Reviews",
+      "source": "review/book-reviews.jsp",
+      "route": "/book-reviews?bookId=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "07-reviews/book-reviews.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Reviews - The Night Circus"
+    },
+    {
+      "module": "07-reviews",
+      "title": "My Reviews",
+      "source": "review/user-review.jsp",
+      "route": "/user-reviews",
+      "file": "07-reviews/my-reviews.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "My Reviews - BookVerse"
+    },
+    {
+      "module": "07-reviews",
+      "title": "Edit Review",
+      "source": "review/edit-review.jsp",
+      "route": "/update-book-review?reviewId=b4ba2f7b-af2f-4b50-854a-4f2ac9f67098",
+      "file": "07-reviews/edit-review.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Edit Review - The Night Circus"
+    },
+    {
+      "module": "07-reviews",
+      "title": "Delete Review Confirmation",
+      "source": "review/delete-review.jsp",
+      "route": "/delete-book-review?reviewId=b4ba2f7b-af2f-4b50-854a-4f2ac9f67098",
+      "file": "07-reviews/delete-review-confirmation.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Delete Review - Confirmation"
+    },
+    {
+      "module": "06-orders",
+      "title": "Payment Form",
+      "source": "order/payment-form.jsp",
+      "route": "/process-payment",
+      "file": "06-orders/payment-form.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Payment - BookVerse"
+    },
+    {
+      "module": "03-account",
+      "title": "Delete Account Modal",
+      "source": "user/profile.jsp",
+      "route": "/user/profile.jsp",
+      "file": "03-account/delete-account-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "My Profile - BookVerse"
+    },
+    {
+      "module": "05-wishlist",
+      "title": "Delete Wishlist Modal",
+      "source": "wishlist/wishlist-details.jsp",
+      "route": "/wishlists?action=view&id=f496edb0-69cb-4b13-9b19-282b256705d6",
+      "file": "05-wishlist/delete-wishlist-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Wishlist Details - BookVerse"
+    },
+    {
+      "module": "06-orders",
+      "title": "Cancel Order Modal",
+      "source": "order/order-details.jsp",
+      "route": "/order-details?orderId=b32aa2f9-98e7-4aed-b2e3-f10c2a0999e8",
+      "file": "06-orders/cancel-order-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Details - BookVerse"
+    },
+    {
+      "module": "09-shared",
+      "title": "Shared Header",
+      "source": "includes/header.jsp",
+      "route": "/wishlists",
+      "file": "09-shared/shared-header.png",
+      "status": "Captured",
+      "note": "Shared JSP fragment captured within a normal page.",
+      "pageTitle": "My Wishlists - BookVerse"
+    },
+    {
+      "module": "09-shared",
+      "title": "Shared Footer",
+      "source": "includes/footer.jsp",
+      "route": "/wishlists",
+      "file": "09-shared/shared-footer.png",
+      "status": "Captured",
+      "note": "Shared JSP fragment captured within a normal page.",
+      "pageTitle": "My Wishlists - BookVerse"
+    },
+    {
+      "module": "08-admin",
+      "title": "Dashboard",
+      "source": "admin/dashboard.jsp",
+      "route": "/admin/dashboard",
+      "file": "08-admin/dashboard.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Admin Dashboard - BookVerse"
+    },
+    {
+      "module": "08-admin",
+      "title": "Manage Books",
+      "source": "admin/manage-books.jsp",
+      "route": "/admin/manage-books.jsp",
+      "file": "08-admin/manage-books.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Manage Books - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Add Book",
+      "source": "admin/add-book.jsp",
+      "route": "/admin/add-book",
+      "file": "08-admin/add-book.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Add New Book - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Edit Book",
+      "source": "admin/edit-book.jsp",
+      "route": "/admin/update-book?id=868b2f96-36c5-4d8b-bc46-f4ffa8c0f93d",
+      "file": "08-admin/edit-book.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Edit Book - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Manage Administrators",
+      "source": "admin/manage-admins.jsp",
+      "route": "/admin/manage-admins",
+      "file": "08-admin/manage-administrators.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Manage Administrators - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Manage Orders",
+      "source": "admin/order/orders.jsp",
+      "route": "/admin/orders",
+      "file": "08-admin/manage-orders.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Management - Admin Dashboard"
+    },
+    {
+      "module": "08-admin",
+      "title": "Admin Order Details",
+      "source": "admin/order/order-details.jsp",
+      "route": "/admin/order-details?orderId=b32aa2f9-98e7-4aed-b2e3-f10c2a0999e8",
+      "file": "08-admin/admin-order-details.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Details - Admin Dashboard"
+    },
+    {
+      "module": "08-admin",
+      "title": "Legacy Update Order Template",
+      "source": "admin/order/update-order.jsp",
+      "route": "/admin/order/update-order.jsp",
+      "file": "08-admin/legacy-update-order-template.png",
+      "status": "Captured",
+      "note": "Legacy standalone JSP: no active GET controller supplies order data. Captured its actual direct-access state.",
+      "pageTitle": "Update Order - Admin Dashboard - BookVerse"
+    },
+    {
+      "module": "08-admin",
+      "title": "Add Administrator Modal",
+      "source": "admin/manage-admins.jsp",
+      "route": "/admin/manage-admins",
+      "file": "08-admin/add-administrator-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Manage Administrators - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Delete Book Modal",
+      "source": "admin/manage-books.jsp",
+      "route": "/admin/manage-books.jsp",
+      "file": "08-admin/delete-book-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Manage Books - BookVerse Admin"
+    },
+    {
+      "module": "08-admin",
+      "title": "Update Order Status Modal",
+      "source": "admin/order/order-details.jsp",
+      "route": "/admin/order-details?orderId=b32aa2f9-98e7-4aed-b2e3-f10c2a0999e8",
+      "file": "08-admin/update-order-status-modal.png",
+      "status": "Captured",
+      "note": "",
+      "pageTitle": "Order Details - Admin Dashboard"
+    }
+  ],
+  "consoleErrors": [],
+  "failedRequests": []
+}

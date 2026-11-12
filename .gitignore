@@ -1,0 +1,12 @@
+.runtime/
+.restoration-backups/
+.github/modernize/
+**/.idea/
+**/.smarttomcat/
+*.log
+.env
+.env.*
+!.env.example
+onlinebookstore/target/
+onlinebookstore/src/main/webapp/WEB-INF/data/*.txt
+onlinebookstore/src/main/webapp/WEB-INF/uploads/

@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "BookVerse: build and run Tomcat 9",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/onlinebookstore/scripts/run.ps1"],
+      "problemMatcher": []
+    },
+    {
+      "label": "BookVerse: stop Tomcat 9",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/onlinebookstore/scripts/stop.ps1"],
+      "problemMatcher": []
+    }
+  ]
+}

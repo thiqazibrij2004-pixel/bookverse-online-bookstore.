@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+  <rect width="300" height="450" fill="#252525"/>
+  <rect x="78" y="130" width="144" height="180" rx="8" fill="none" stroke="#8a5cf5" stroke-width="6"/>
+  <path d="M100 130v180M120 170h75M120 190h55" fill="none" stroke="#8a5cf5" stroke-width="5"/>
+  <text x="150" y="355" fill="#b0b0b0" text-anchor="middle" font-family="sans-serif" font-size="18">BookVerse</text>
+</svg>

@@ -1,0 +1,112 @@
+import { testPassword, adminCredentials } from './test-credentials.mjs';
+// Run only against the separate restoration test server with copied data.
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const base = 'http://localhost:8081/onlinebookstore';
+const data = path.resolve(import.meta.dirname,'../../.runtime/test-data');
+const rows = name => fs.readFileSync(path.join(data,name+'.txt'),'utf8').trim().split(/\r?\n/).filter(Boolean);
+let cookie = '';
+async function request(route,form) {
+  const multipart=form instanceof FormData;
+  const response = await fetch(base+route,{method:form?'POST':'GET',redirect:'manual',
+    headers:{...(cookie?{cookie}:{}),...(form&&!multipart?{'content-type':'application/x-www-form-urlencoded'}:{})},
+    body:form?(multipart?form:new URLSearchParams(form)):undefined});
+  const set = response.headers.getSetCookie().find(value=>value.startsWith('JSESSIONID='));
+  if(set) cookie=set.split(';')[0];
+  const text = await response.text();
+  assert(response.status<400,`${route}: HTTP ${response.status}: ${text.slice(-700)}`);
+  return {status:response.status,text,location:response.headers.get('location')};
+}
+async function page(route,expected) {
+  let r=await request(route);
+  for(let i=0;r.location&&i<5;i++) r=await request(new URL(r.location,base).pathname.replace('/onlinebookstore','')+new URL(r.location,base).search);
+  assert.equal(r.status,200,route);
+  if(expected) assert(r.text.includes(expected),`${route}: missing ${expected}`);
+  console.log('PASS page',route);
+  return r;
+}
+const book=rows('books').map(r=>r.split(',')).find(r=>r[0]==='PHYSICAL'&&Number(r[10])>=3);
+assert(book,'Need a physical book with stock for copied-data test');
+const bid=book[1];
+for(const route of [`/books?search=RESTORATION_NO_SUCH_TITLE&genre=${encodeURIComponent(book[7])}`,`/search-book?searchQuery=RESTORATION_NO_SUCH_TITLE&genre=${encodeURIComponent(book[7])}`]) {
+  const result=await page(route);
+  assert(!result.text.includes('/book-details?id='+bid),'Search and genre must intersect');
+}
+await page('/book-covers/default_cover.jpg','<svg');
+for(const route of ['/','/home','/books','/search-book?searchQuery=Educated','/genre?genre=Fiction','/top-books','/login','/register','/cart','/admin/login',`/book-details?id=${bid}`,`/book-reviews?bookId=${bid}`,`/book-covers/${book[11]}`]) await page(route);
+const denied=await request('/admin/dashboard'); assert(denied.location?.endsWith('/admin/login')); console.log('PASS admin guard');
+const username='restore_'+Date.now().toString().slice(-9),password=testPassword();
+await request('/register',{fullName:'Restoration Test',username,email:username+'@example.com',password,confirmPassword:password,termsAgreement:'on'});
+assert(rows('users').some(r=>r.includes(','+username+',')),'Registration persisted');
+await request('/login',{username,password});
+await page('/user/profile.jsp',username);
+await page('/update-profile');
+await request('/update-profile',{fullName:'Restoration Updated',email:username+'@example.com'});
+assert(rows('users').some(r=>r.includes('Restoration Updated')),'Profile persisted');
+console.log('PASS registration, login, profile update');
+await request('/add-to-cart',{bookId:bid,quantity:'1'});
+await request('/update-cart',{bookId:bid,action:'increase'});
+await page('/cart',book[2]);
+await request('/update-cart',{bookId:bid,action:'decrease'});
+await request('/update-cart',{bookId:bid,action:'remove'});
+await request('/add-to-cart',{bookId:bid,quantity:'1'});
+console.log('PASS cart add / increase / decrease / remove');
+await page('/wishlists'); await page('/wishlists?action=create');
+const created=await request('/wishlists',{action:'create',name:'Restoration list',description:'Copied data test'});
+const wid=new URL(created.location,base).searchParams.get('id'); assert(wid,'Wishlist created');
+await page(`/wishlists?action=view&id=${wid}`,'Restoration list');
+await page(`/wishlists?action=edit&id=${wid}`);
+await request('/wishlists',{action:'update',wishlistId:wid,name:'Restoration edited',description:'Updated'});
+await request('/wishlist-item',{action:'add-to-selected',wishlistId:wid,bookId:bid,notes:'Test',priority:'1'});
+assert(rows('wishlist_items').some(r=>r.includes(wid)&&r.includes(bid)),'Wishlist book persisted');
+await request(`/wishlist-item?action=remove&wishlistId=${wid}&bookId=${bid}`);
+await request('/wishlists',{action:'delete',wishlistId:wid});
+assert(!rows('wishlists').some(r=>r.includes(wid)),'Wishlist deleted');
+console.log('PASS wishlist create / view / edit / add / remove / delete');
+await page(`/add-book-review?bookId=${bid}`);
+await request('/add-book-review',{bookId:bid,rating:'4',comment:'Restoration test review'});
+const review=rows('reviews').find(r=>r.includes('Restoration test review')&&r.includes(','+username+',')); assert(review,'Review persisted');
+const rid=review.split(',')[0];
+await page(`/book-reviews?bookId=${bid}`,'Restoration test review');
+await page('/user-reviews');
+await page(`/update-book-review?reviewId=${rid}`);
+await request('/update-book-review',{reviewId:rid,rating:'5',comment:'Restoration edited review'});
+assert(rows('reviews').some(r=>r.includes('Restoration edited review')),'Review edit persisted');
+await request('/delete-book-review',{reviewId:rid,confirm:'yes'});
+assert(!rows('reviews').some(r=>r.startsWith(rid+',')),'Review deleted');
+console.log('PASS reviews add / display / edit / delete');
+await page('/checkout');
+await request('/checkout',{shippingAddress:'123 Test Street',billingAddress:'123 Test Street',contactEmail:username+'@example.com',contactPhone:'0771234567'});
+await page('/process-payment');
+const paid=await request('/process-payment',{paymentMethod:'CREDIT_CARD',cardNumber:'4111111111111111',cardName:'Restoration Test'});
+assert(paid.location?.includes('/order-confirmation?orderId='),'Order paid');
+const oid=new URL(paid.location,base).searchParams.get('orderId');
+await page(`/order-confirmation?orderId=${oid}`); await page('/order-history'); await page(`/order-details?orderId=${oid}`);
+await request('/cancel-order',{orderId:oid});
+assert(rows('orders').some(r=>r.includes(oid)&&r.includes('CANCELLED')),'Order cancelled');
+console.log('PASS checkout / demo payment / history / details / cancel');
+await request('/logout'); assert((await request('/wishlists')).location?.endsWith('/login')); console.log('PASS logout');
+const admin=await request('/admin/login',{username:adminCredentials().username,password:adminCredentials().password});
+if(admin.location?.includes('dashboard')) {
+  for(const route of ['/admin/dashboard','/admin/manage-books.jsp','/admin/orders','/admin/manage-admins']) await page(route);
+  console.log('PASS admin login and read-only management pages');
+  await page(`/admin/order-details?orderId=${oid}`);
+  await page('/admin/add-book');
+  const fields={title:'Restoration Book '+username,author:'Test Author',isbn:'9780399590504',publisher:'Test Publisher',publicationDate:'2020-01-01',genre:'Fiction',description:'Restoration test book',price:'9.99',quantity:'5',bookType:'physical',pageCount:'100',dimensions:'6 x 9',binding:'Paperback',weight:'0.3',edition:'1',condition:'New',language:'English'};
+  const toForm=values=>{const form=new FormData();for(const [key,value]of Object.entries(values))form.set(key,value);return form;};
+  const form=toForm(fields);
+  const cover=fs.readFileSync(path.resolve(data,'../test-covers',book[11]));
+  form.set('coverImage',new Blob([cover],{type:'image/jpeg'}),'test-cover.jpg');
+  await request('/admin/add-book',form);
+  const added=rows('books').find(r=>r.includes(fields.title));assert(added,'Admin book creation persisted');
+  const parts=added.split(','),addedId=parts[1];
+  await page('/book-covers/'+parts[11]);
+  await page('/admin/update-book?id='+addedId);
+  await request('/admin/update-book',toForm({...fields,bookId:addedId,title:fields.title+' Updated'}));
+  assert(rows('books').some(r=>r.includes(fields.title+' Updated')),'Admin book update persisted');
+  await request('/admin/delete-book',{bookId:addedId});
+  assert(!rows('books').some(r=>r.split(',')[1]===addedId),'Admin book deletion persisted');
+  console.log('PASS admin book add / cover upload / edit / delete');
+} else console.log('MANUAL: existing admin password differs from README');
+console.log('All smoke tests completed against COPIED test data only.');
